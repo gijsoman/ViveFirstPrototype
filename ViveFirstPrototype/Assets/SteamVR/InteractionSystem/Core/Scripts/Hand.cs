@@ -1654,9 +1654,9 @@ namespace Valve.VR.InteractionSystem
             if (hadOldRendermodel)
                 mainRenderModel.SetSkeletonRangeOfMotion(oldRM_rom);
 
-            ///MADE BY GIJS. IF YOU FIND ANY STRUGGLES MAY BE BECAUSE OF THIS.
-            if (mainRenderModel.displayControllerByDefault)
-                mainRenderModel.SetSkeletonRangeOfMotion(EVRSkeletalMotionRange.WithController);
+            /////MADE BY GIJS. IF YOU FIND ANY STRUGGLES MAY BE BECAUSE OF THIS.
+            //if (mainRenderModel.displayControllerByDefault)
+            //    mainRenderModel.SetSkeletonRangeOfMotion(EVRSkeletalMotionRange.WithController);
 
             this.BroadcastMessage("SetInputSource", handType, SendMessageOptions.DontRequireReceiver); // let child objects know we've initialized
             this.BroadcastMessage("OnHandInitialized", deviceIndex, SendMessageOptions.DontRequireReceiver); // let child objects know we've initialized
