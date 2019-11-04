@@ -439,11 +439,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 886472441}
   m_LocalRotation: {x: -0, y: -0, z: 9.313226e-10, w: 1}
-  m_LocalPosition: {x: -0, y: -0.729, z: -0.049}
-  m_LocalScale: {x: 0.77894, y: 1, z: 0.70786}
+  m_LocalPosition: {x: -0, y: -0.729, z: -0.229}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1276083404}
   - {fileID: 1786594262}
+  - {fileID: 890066553}
   m_Father: {fileID: 1088020295}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -470,10 +471,10 @@ GameObject:
   m_Component:
   - component: {fileID: 890066553}
   - component: {fileID: 890066552}
-  - component: {fileID: 890066555}
   - component: {fileID: 890066554}
+  - component: {fileID: 890066555}
   m_Layer: 0
-  m_Name: NogEEn
+  m_Name: OtherPickupTryout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -537,13 +538,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 890066551}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.291, y: 1.034, z: -0.352}
-  m_LocalScale: {x: 0.121474296, y: 0.121474296, z: 0.121474296}
+  m_LocalRotation: {x: 6.5854455e-10, y: 0.7071068, z: -6.5854455e-10, w: 0.7071068}
+  m_LocalPosition: {x: -0.3519999, y: 1.763, z: 1.5200001}
+  m_LocalScale: {x: 0.121474326, y: 0.121474296, z: 0.121474326}
   m_Children:
   - {fileID: 1814815318}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 886472442}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &890066554
 MonoBehaviour:
@@ -554,30 +555,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 890066551}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07534fa49c98c4f48b3c835b2170a16f, type: 3}
+  m_Script: {fileID: 11500000, guid: 43e53a985809f0949b9a42cc2a6888c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: 5989f6573a053ef4ca3cb61f1dfca39c, type: 2}
-  attachmentFlags: 44
-  attachmentOffset: {fileID: 0}
-  restoreOriginalParent: 0
-  interactable: {fileID: 0}
---- !u!54 &890066555
-Rigidbody:
+  _itemPackage: {fileID: 7688822942197546379, guid: c884cf1163e3fbb4fb272398391aaa49,
+    type: 3}
+  useItemPackagePreview: 1
+  requireGrabActionToTake: 1
+  requireReleaseActionToReturn: 1
+  showTriggerHint: 0
+  attachmentFlags: 47
+  takeBackItem: 1
+  acceptDifferentItems: 0
+  pickupEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  dropEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  justPickedUpItem: 0
+--- !u!135 &890066555
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 890066551}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1088020295 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9,
@@ -696,7 +705,7 @@ Transform:
   m_GameObject: {fileID: 1276083403}
   m_LocalRotation: {x: -0, y: -0, z: -9.313226e-10, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.066514, z: 0.83071}
+  m_LocalScale: {x: 0.68302, y: 0.09088679, z: 0.45487186}
   m_Children: []
   m_Father: {fileID: 886472442}
   m_RootOrder: 0
@@ -825,7 +834,7 @@ PrefabInstance:
     - target: {fileID: 6688612539868854976, guid: 4688ab3a2c9884f4eb9132411b0f2d2b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.54
+      value: 0.351
       objectReference: {fileID: 0}
     - target: {fileID: 6688612539868854976, guid: 4688ab3a2c9884f4eb9132411b0f2d2b,
         type: 3}

@@ -14,8 +14,6 @@ public class FollowVRCam : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 offset = 
-
-        transform.position = new Vector3(VRCamera.position.x, VRCamera.position.y + startOffset.y, VRCamera.position.z);
+        transform.position = new Vector3(VRCamera.position.x + startOffset.x, VRCamera.position.y + startOffset.y, VRCamera.position.z-startOffset.z);
     }
 }
