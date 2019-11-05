@@ -218,6 +218,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void HandHoverUpdate( Hand hand )
 		{
+        
 			if ( takeBackItem && requireReleaseActionToReturn )
 			{
                 if (hand.isActive)
@@ -225,6 +226,7 @@ namespace Valve.VR.InteractionSystem
 					ItemPackage currentAttachedItemPackage = GetAttachedItemPackage( hand );
                     if (currentAttachedItemPackage == itemPackage && hand.IsGrabEnding(currentAttachedItemPackage.gameObject))
 					{
+                        Debug.Log("returning");
 						TakeBackItem( hand );
 						return; // So that we don't pick up an ItemPackage the same frame that we return it
 					}

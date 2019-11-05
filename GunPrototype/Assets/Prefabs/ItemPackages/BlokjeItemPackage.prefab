@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Blokje
-  packageType: 1
+  packageType: 0
   itemPrefab: {fileID: 2632743644481554415, guid: ab132cac2a35f7d4d979396113e8fa8d,
     type: 3}
   otherHandItemPrefab: {fileID: 0}

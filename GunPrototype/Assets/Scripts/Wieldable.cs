@@ -51,6 +51,15 @@ public class Wieldable : MonoBehaviour
         if (startingGrabType == GrabTypes.Grip)
         {
             hand.AttachObject(gameObject, startingGrabType, attachmentFlags);
+            attached = true;
         }
+    }
+
+    protected virtual void HandAttachedUpdate(Hand hand)
+    {
+        GrabTypes endingGrabType = hand.GetGrabEnding();
+
+        if (endingGrabType == GrabTypes.Grip)
+            hand.DetachObject(gameObject);
     }
 }
