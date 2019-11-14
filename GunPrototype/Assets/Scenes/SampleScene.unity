@@ -814,7 +814,6 @@ GameObject:
   - component: {fileID: 1935227486}
   - component: {fileID: 1935227485}
   - component: {fileID: 1935227484}
-  - component: {fileID: 1935227490}
   - component: {fileID: 1935227489}
   m_Layer: 0
   m_Name: DebugCube
@@ -849,13 +848,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07534fa49c98c4f48b3c835b2170a16f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 0}
+  mat: {fileID: 2100000, guid: 5989f6573a053ef4ca3cb61f1dfca39c, type: 2}
   Type: 0
-  allowedToholster: 0
+  allowedToholster: 1
   attachmentFlags: 44
   attachmentOffset: {fileID: 0}
   restoreOriginalParent: 0
   interactable: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!114 &1935227485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -982,24 +982,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1935227490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1935227482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3a2393685883af4bb47834f39faacc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Type: 0
-  inRangeOfHolsterSlot: 0
-  holsterSlot: {fileID: 939781372}
-  inRageOfHolster: 0
-  isHolstered: 1
-  wieldable: {fileID: 0}
 --- !u!1 &2073351419
 GameObject:
   m_ObjectHideFlags: 0
