@@ -443,7 +443,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1276083404}
-  - {fileID: 1935227483}
+  - {fileID: 939781371}
   m_Father: {fileID: 1088020295}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -460,6 +460,66 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VRCamera: {fileID: 1679802308}
+--- !u!1 &939781370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 939781371}
+  - component: {fileID: 939781372}
+  - component: {fileID: 939781373}
+  m_Layer: 0
+  m_Name: HolsterSlot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &939781371
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939781370}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.403, y: -0, z: 0.0516}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1935227483}
+  m_Father: {fileID: 886472442}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &939781372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939781370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0649142a2cf23c04597dcd9bb7c5fc00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HolsterItemType: 0
+  HolsteredItem: {fileID: 1935227482}
+--- !u!135 &939781373
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939781370}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.11
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1088020295 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9,
@@ -754,9 +814,10 @@ GameObject:
   - component: {fileID: 1935227486}
   - component: {fileID: 1935227485}
   - component: {fileID: 1935227484}
+  - component: {fileID: 1935227490}
   - component: {fileID: 1935227489}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: DebugCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -770,11 +831,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1935227482}
   m_LocalRotation: {x: -1.1893296e-10, y: -0.06385165, z: -0, w: 0.99795943}
-  m_LocalPosition: {x: 0.3942, y: 0, z: 0.0496}
-  m_LocalScale: {x: 0.1183942, y: 0.1183942, z: 0.1183942}
+  m_LocalPosition: {x: -0.008799851, y: 0, z: -0.0020000264}
+  m_LocalScale: {x: 0.11839427, y: 0.1183942, z: 0.11839427}
   m_Children: []
-  m_Father: {fileID: 886472442}
-  m_RootOrder: 1
+  m_Father: {fileID: 939781371}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -7.3220005, z: 0}
 --- !u!114 &1935227484
 MonoBehaviour:
@@ -789,6 +850,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mat: {fileID: 0}
+  Type: 0
+  allowedToholster: 0
   attachmentFlags: 44
   attachmentOffset: {fileID: 0}
   restoreOriginalParent: 0
@@ -874,7 +937,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5989f6573a053ef4ca3cb61f1dfca39c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -919,6 +982,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1935227490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935227482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a2393685883af4bb47834f39faacc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 0
+  inRangeOfHolsterSlot: 0
+  holsterSlot: {fileID: 939781372}
+  inRageOfHolster: 0
+  isHolstered: 1
+  wieldable: {fileID: 0}
 --- !u!1 &2073351419
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,15 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(SphereCollider))]
 public class HolsterSlot : MonoBehaviour
 {
-    public ItemType Type;
+    public ItemType HolsterItemType;
     public GameObject HolsteredItem;
-
-    private SphereCollider holsterRange;
-
-    private void Awake()
-    {
-        holsterRange = GetComponent<SphereCollider>();
-    }
 
     public void HolsterItem(GameObject _itemToHolster)
     {
@@ -27,29 +20,20 @@ public class HolsterSlot : MonoBehaviour
 
     public void UnHolsterItem(GameObject _itemToUnHolster)
     {
-        _itemToUnHolster.transform.SetParent(null);
-        HolsteredItem = null;
+        if (HolsteredItem != null)
+        {
+            _itemToUnHolster.transform.SetParent(null);
+            HolsteredItem = null;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        HolsterItem holsterItem;
-
-        if (other.GetComponent<HolsterItem>() != null)
-        {
-            holsterItem = other.GetComponent<HolsterItem>();
-            holsterItem.ReadyItemToHolster();
-        }
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
-        HolsterItem holsterItem;
-
-        if (other.GetComponent<HolsterItem>() != null)
-        {
-            holsterItem = other.GetComponent<HolsterItem>();
-            holsterItem.ReadyItemToUnHolster();
-        }
+        
     }
 }

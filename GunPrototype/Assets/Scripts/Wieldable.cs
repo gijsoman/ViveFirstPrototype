@@ -4,11 +4,15 @@ using UnityEngine;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
 
+public enum ItemType { Gun, Pepper };
+
 [RequireComponent(typeof(Interactable), typeof(Rigidbody))]
-//[RequireComponent(typeof(Rigidbody))]
 public class Wieldable : MonoBehaviour
 {
     public Material mat;
+    public ItemType Type;
+
+    public bool allowedToholster;
 
     [EnumFlags]
     [Tooltip("The flags used to attach this object to the hand.")]
