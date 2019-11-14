@@ -28,6 +28,7 @@ public class Wieldable : MonoBehaviour
 
     public delegate void WieldEvent();
     public WieldEvent OnDetachObject;
+    public WieldEvent OnAttachObject;
 
     [HideInInspector]
     public Interactable interactable;
@@ -58,9 +59,10 @@ public class Wieldable : MonoBehaviour
 
         if (startingGrabType == GrabTypes.Grip)
         {
+            OnAttachObject.Invoke();
             hand.AttachObject(gameObject, startingGrabType, attachmentFlags);
             rb.isKinematic = true;
-            attached = true;
+            attached = true;         
         }
     }
 
@@ -70,15 +72,16 @@ public class Wieldable : MonoBehaviour
 
         if (endingGrabType == GrabTypes.Grip)
         {
+            OnDetachObject?.Invoke();
             hand.DetachObject(gameObject);
             rb.isKinematic = false;
             attached = false;
-            OnDetachObject?.Invoke();
         }
     }
 
     private void OnDestroy()
     {
         OnDetachObject = null;
+        OnAttachObject = null;
     }
 }

@@ -17,12 +17,18 @@ public class HolsterSlot : MonoBehaviour
 
     public void HolsterItem(GameObject _itemToHolster)
     {
-        //holster the item if it is released within the holster range.
+        if (HolsteredItem == null)
+        {
+            HolsteredItem = _itemToHolster;
+            _itemToHolster.transform.SetParent(transform);
+            _itemToHolster.transform.localPosition = Vector3.zero;
+        }
     }
 
-    private void UnHolsterItem(HolsterItem _itemToUnHolster)
+    public void UnHolsterItem(GameObject _itemToUnHolster)
     {
-        //unholster the item if it is grabbed.
+        _itemToUnHolster.transform.SetParent(null);
+        HolsteredItem = null;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,8 +38,7 @@ public class HolsterSlot : MonoBehaviour
         if (other.GetComponent<HolsterItem>() != null)
         {
             holsterItem = other.GetComponent<HolsterItem>();
-            holsterItem.inRangeOfHolsterSlot = true;
-            holsterItem.holsterSlotInRangeOf = this;
+            holsterItem.ReadyItemToHolster();
         }
     }
 
@@ -44,8 +49,7 @@ public class HolsterSlot : MonoBehaviour
         if (other.GetComponent<HolsterItem>() != null)
         {
             holsterItem = other.GetComponent<HolsterItem>();
-            holsterItem.inRangeOfHolsterSlot = false;
-            holsterItem.holsterSlotInRangeOf = null;
+            holsterItem.ReadyItemToUnHolster();
         }
     }
 }
