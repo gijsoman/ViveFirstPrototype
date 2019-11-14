@@ -4,7 +4,7 @@ using UnityEngine;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
 
-[RequireComponent(typeof(Interactable))]
+[RequireComponent(typeof(Interactable), typeof(Rigidbody))]
 //[RequireComponent(typeof(Rigidbody))]
 public class Wieldable : MonoBehaviour
 {
@@ -26,22 +26,30 @@ public class Wieldable : MonoBehaviour
     protected Quaternion attachRotation;
     protected Transform attachEaseInTransform;
 
+    public delegate void WieldEvent();
+    public WieldEvent OnDetachObject;
+
     [HideInInspector]
     public Interactable interactable;
+
+    private Rigidbody rb;
 
     protected virtual void Awake()
     {
         interactable = GetComponent<Interactable>();
+        rb = GetComponent<Rigidbody>();
     }
 
     protected virtual void OnHandHoverBegin(Hand hand)
     {
-        mat.color = Color.black;
+        if(mat != null)        
+            mat.color = Color.black;
     }
 
     protected virtual void OnHandHoverEnd(Hand hand)
     {
-        mat.color = Color.yellow;
+        if(mat != null)
+            mat.color = Color.yellow;
     }
 
     protected virtual void HandHoverUpdate(Hand hand)
@@ -51,6 +59,7 @@ public class Wieldable : MonoBehaviour
         if (startingGrabType == GrabTypes.Grip)
         {
             hand.AttachObject(gameObject, startingGrabType, attachmentFlags);
+            rb.isKinematic = true;
             attached = true;
         }
     }
@@ -60,6 +69,16 @@ public class Wieldable : MonoBehaviour
         GrabTypes endingGrabType = hand.GetGrabEnding();
 
         if (endingGrabType == GrabTypes.Grip)
+        {
             hand.DetachObject(gameObject);
+            rb.isKinematic = false;
+            attached = false;
+            OnDetachObject?.Invoke();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        OnDetachObject = null;
     }
 }
