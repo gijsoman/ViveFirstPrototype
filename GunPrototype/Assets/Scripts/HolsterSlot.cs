@@ -8,32 +8,39 @@ public class HolsterSlot : MonoBehaviour
     public ItemType HolsterItemType;
     public GameObject HolsteredItem;
 
-    public void HolsterItem(GameObject _itemToHolster)
+    private Wieldable currentWieldableItemWithinRange;
+
+    public void HolsterItem()
     {
         if (HolsteredItem == null)
         {
-            HolsteredItem = _itemToHolster;
-            _itemToHolster.transform.SetParent(transform);
-            _itemToHolster.transform.localPosition = Vector3.zero;
-        }
-    }
-
-    public void UnHolsterItem(GameObject _itemToUnHolster)
-    {
-        if (HolsteredItem != null)
-        {
-            _itemToUnHolster.transform.SetParent(null);
-            HolsteredItem = null;
+            HolsteredItem = currentWieldableItemWithinRange.gameObject;
+            currentWieldableItemWithinRange.rb.isKinematic = true;
+            HolsteredItem.transform.SetParent(transform);
+            HolsteredItem.transform.localPosition = Vector3.zero;
+            HolsteredItem.transform.rotation = Quaternion.identity;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.GetComponent<Wieldable>() != null)
+        {
+            currentWieldableItemWithinRange = other.GetComponent<Wieldable>();
+            currentWieldableItemWithinRange.OnDetachObject += HolsterItem;
+            currentWieldableItemWithinRange.mat.color = Color.green;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        
+        if (currentWieldableItemWithinRange != null)
+        {
+            currentWieldableItemWithinRange.GetComponent<Wieldable>().mat.color = Color.red;
+            currentWieldableItemWithinRange.OnDetachObject -= HolsterItem;
+        }
+
+        HolsteredItem = null;
     }
+    
 }

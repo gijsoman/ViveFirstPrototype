@@ -37,7 +37,7 @@ public class Wieldable : MonoBehaviour
     [HideInInspector]
     public Interactable interactable;
 
-    private Rigidbody rb;
+    public Rigidbody rb;
 
     protected virtual void Awake()
     {
@@ -47,14 +47,12 @@ public class Wieldable : MonoBehaviour
 
     protected virtual void OnHandHoverBegin(Hand hand)
     {
-        if(mat != null)        
-            mat.color = Color.black;
+
     }
 
     protected virtual void OnHandHoverEnd(Hand hand)
     {
-        if(mat != null)
-            mat.color = Color.yellow;
+
     }
 
     protected virtual void HandHoverUpdate(Hand hand)
@@ -63,7 +61,7 @@ public class Wieldable : MonoBehaviour
 
         if (startingGrabType == GrabTypes.Grip)
         {
-            OnAttachObject.Invoke();
+            OnAttachObject?.Invoke();
             hand.AttachObject(gameObject, startingGrabType, attachmentFlags);
             rb.isKinematic = true;
             attached = true;         
@@ -76,10 +74,10 @@ public class Wieldable : MonoBehaviour
 
         if (endingGrabType == GrabTypes.Grip)
         {
-            OnDetachObject?.Invoke();
             hand.DetachObject(gameObject);
             rb.isKinematic = false;
             attached = false;
+            OnDetachObject?.Invoke();
         }
     }
 
