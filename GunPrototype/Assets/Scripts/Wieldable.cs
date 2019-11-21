@@ -74,7 +74,7 @@ public class Wieldable : MonoBehaviour
 
         if (endingGrabType == GrabTypes.Grip)
         {
-            hand.DetachObject(gameObject);
+            hand.DetachObject(gameObject, false);
             rb.isKinematic = false;
             attached = false;
             OnDetachObject?.Invoke();
