@@ -31,13 +31,23 @@ public class Wieldable : MonoBehaviour
     protected Transform attachEaseInTransform;
 
     public delegate void WieldEvent();
-    public WieldEvent OnDetachObject;
     public WieldEvent OnAttachObject;
+    public WieldEvent OnDetachObject;
+   
+
+    public Vector3 LocalHolsterPosition;
+    public Quaternion LocalHolsterRotation;
 
     [HideInInspector]
     public Interactable interactable;
 
     public Rigidbody rb;
+
+    protected virtual void OnValidate()
+    {
+        LocalHolsterPosition = transform.position;
+        LocalHolsterRotation = transform.rotation;
+    }
 
     protected virtual void Awake()
     {

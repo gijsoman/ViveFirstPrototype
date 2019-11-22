@@ -10,13 +10,15 @@ public class HolsterSlot : MonoBehaviour
 
     private Wieldable currentWieldableItemWithinRange;
 
-    public void HolsterItem()
+    public void HolsterItem(Vector3 _LocalHolsterPosition, Quaternion _LocalHolsterRotation)
     {
         if (HolsteredItem == null)
         {
             HolsteredItem = currentWieldableItemWithinRange.gameObject;
             currentWieldableItemWithinRange.rb.isKinematic = true;
             HolsteredItem.transform.SetParent(transform);
+
+            //determine the position and rotation of the item when holstered.
             HolsteredItem.transform.localPosition = Vector3.zero;
             HolsteredItem.transform.rotation = Quaternion.identity;
         }
