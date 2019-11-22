@@ -10,7 +10,7 @@ public class HolsterSlot : MonoBehaviour
 
     private Wieldable currentWieldableItemWithinRange;
 
-    public void HolsterItem(Vector3 _LocalHolsterPosition, Quaternion _LocalHolsterRotation)
+    public void HolsterItem()
     {
         if (HolsteredItem == null)
         {
@@ -30,7 +30,6 @@ public class HolsterSlot : MonoBehaviour
         {
             currentWieldableItemWithinRange = other.GetComponent<Wieldable>();
             currentWieldableItemWithinRange.OnDetachObject += HolsterItem;
-            currentWieldableItemWithinRange.mat.color = Color.green;
         }
     }
 
@@ -38,7 +37,6 @@ public class HolsterSlot : MonoBehaviour
     {
         if (currentWieldableItemWithinRange != null)
         {
-            currentWieldableItemWithinRange.GetComponent<Wieldable>().mat.color = Color.red;
             currentWieldableItemWithinRange.OnDetachObject -= HolsterItem;
         }
 
