@@ -4,13 +4,9 @@ using UnityEngine;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
 
-public enum ItemType { Gun, Pepper };
-
 [RequireComponent(typeof(Interactable), typeof(Rigidbody))]
 public class Wieldable : MonoBehaviour
 {
-    public ItemType Type;
-
     [EnumFlags]
     [Tooltip("The flags used to attach this object to the hand.")]
     public Hand.AttachmentFlags attachmentFlags = Hand.AttachmentFlags.ParentToHand | Hand.AttachmentFlags.DetachFromOtherHand | Hand.AttachmentFlags.TurnOnKinematic;
@@ -22,6 +18,7 @@ public class Wieldable : MonoBehaviour
     public WieldEvent OnAttachObject;
     public WieldEvent OnDetachObject;
 
+    [HideInInspector]
     public Rigidbody rb;
 
     private void Awake()

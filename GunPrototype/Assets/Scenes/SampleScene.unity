@@ -663,7 +663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HolsterItemType: 0
-  HolsteredItem: {fileID: 1935227482}
+  HolsteredItem: {fileID: 1132322974}
 --- !u!135 &939781373
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -675,7 +675,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.07
+  m_Radius: 0.14
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1088020295 stripped
 Transform:
@@ -697,6 +697,7 @@ GameObject:
   - component: {fileID: 1132322979}
   - component: {fileID: 1132322978}
   - component: {fileID: 1132322977}
+  - component: {fileID: 3001540018117949623}
   - component: {fileID: 1132322976}
   m_Layer: 0
   m_Name: Handgun_M1911A (Model)
@@ -748,13 +749,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07534fa49c98c4f48b3c835b2170a16f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: 5989f6573a053ef4ca3cb61f1dfca39c, type: 2}
-  Type: 0
-  allowedToholster: 0
   attachmentFlags: 44
   attachmentOffset: {fileID: 0}
-  restoreOriginalParent: 0
-  interactable: {fileID: 0}
   rb: {fileID: 0}
 --- !u!54 &1132322978
 Rigidbody:
@@ -1299,13 +1295,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07534fa49c98c4f48b3c835b2170a16f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: 5989f6573a053ef4ca3cb61f1dfca39c, type: 2}
-  Type: 0
-  allowedToholster: 1
   attachmentFlags: 44
   attachmentOffset: {fileID: 0}
-  restoreOriginalParent: 0
-  interactable: {fileID: 0}
   rb: {fileID: 0}
 --- !u!114 &1935227485
 MonoBehaviour:
@@ -1836,3 +1827,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2132898448}
   m_Mesh: {fileID: 4300006, guid: 380c8a123a673fc45acd91b91b8d0f7b, type: 3}
+--- !u!114 &3001540018117949623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132322974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adeabd7f25a450a42b079192056958e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 0
+  HolsteredOffset: {fileID: 2614192085585623473, guid: 8c24685de0a3f3949910e467b64d38c6,
+    type: 3}
+  rb: {fileID: 0}
+  wieldable: {fileID: 0}

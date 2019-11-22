@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(SphereCollider))]
 public class HolsterSlot : MonoBehaviour
@@ -8,36 +6,36 @@ public class HolsterSlot : MonoBehaviour
     public ItemType HolsterItemType;
     public GameObject HolsteredItem;
 
-    private Wieldable currentWieldableItemWithinRange;
+    private Holsterable currentHolsterableItem;
 
     public void HolsterItem()
     {
         if (HolsteredItem == null)
         {
-            HolsteredItem = currentWieldableItemWithinRange.gameObject;
-            currentWieldableItemWithinRange.rb.isKinematic = true;
+            HolsteredItem = currentHolsterableItem.gameObject;
+            currentHolsterableItem.rb.isKinematic = true;
             HolsteredItem.transform.SetParent(transform);
 
-            //determine the position and rotation of the item when holstered.
-            HolsteredItem.transform.localPosition = Vector3.zero;
-            HolsteredItem.transform.rotation = Quaternion.identity;
+
+            //check how we can fix the positioning.
+            HolsteredItem.transform.localPosition = currentHolsterableItem.HolsteredOffset.localPosition;
+            HolsteredItem.transform.localRotation = currentHolsterableItem.HolsteredOffset.localRotation;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Wieldable>() != null)
-        {
-            currentWieldableItemWithinRange = other.GetComponent<Wieldable>();
-            currentWieldableItemWithinRange.OnDetachObject += HolsterItem;
-        }
+        currentHolsterableItem = other.GetComponent<Holsterable>();
+        if (currentHolsterableItem != null && currentHolsterableItem.Type == HolsterItemType)
+            currentHolsterableItem.wieldable.OnDetachObject += HolsterItem;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (currentWieldableItemWithinRange != null)
+        if (currentHolsterableItem != null)
         {
-            currentWieldableItemWithinRange.OnDetachObject -= HolsterItem;
+            currentHolsterableItem.wieldable.OnDetachObject -= HolsterItem;
+            currentHolsterableItem = null;
         }
 
         HolsteredItem = null;
