@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 [RequireComponent(typeof(SphereCollider))]
 public class HolsterSlot : MonoBehaviour
@@ -6,7 +7,22 @@ public class HolsterSlot : MonoBehaviour
     public ItemType HolsterItemType;
     public GameObject HolsteredItem;
 
-    private Holsterable currentHolsterableItem;
+    //is public to check stuff in inspec
+    public Holsterable currentHolsterableItem;
+
+    private bool vrPositioned;
+
+    private void Start()
+    {
+        StartCoroutine(WaitForVRPositioning());
+    }
+
+    private IEnumerator WaitForVRPositioning()
+    {
+        yield return new WaitForSeconds(0.1f);
+        vrPositioned = true;
+        Debug.Log("vrPositioned");
+    }
 
     public void HolsterItem()
     {
@@ -25,20 +41,28 @@ public class HolsterSlot : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        currentHolsterableItem = other.GetComponent<Holsterable>();
-        if (currentHolsterableItem != null && currentHolsterableItem.Type == HolsterItemType)
-            currentHolsterableItem.wieldable.OnDetachObject += HolsterItem;
+        if (vrPositioned)
+        {
+            Debug.Log("TRIGGER ENTERED");
+            currentHolsterableItem = other.GetComponent<Holsterable>();
+            if (currentHolsterableItem != null && currentHolsterableItem.Type == HolsterItemType)
+                currentHolsterableItem.wieldable.OnDetachObject += HolsterItem;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (currentHolsterableItem != null)
+        if (vrPositioned)
         {
-            currentHolsterableItem.wieldable.OnDetachObject -= HolsterItem;
-            currentHolsterableItem = null;
-        }
+            Debug.Log("TRIGGER EXIT");
+            if (currentHolsterableItem != null)
+            {
+                currentHolsterableItem.wieldable.OnDetachObject -= HolsterItem;
+                currentHolsterableItem = null;
+            }
 
-        HolsteredItem = null;
+            HolsteredItem = null;
+        }
     }
     
 }
