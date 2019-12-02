@@ -18,14 +18,6 @@ public class Wieldable : MonoBehaviour
     public WieldEvent OnAttachObject;
     public WieldEvent OnDetachObject;
 
-    [HideInInspector]
-    public Rigidbody rb;
-
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
-
     private void HandHoverUpdate(Hand hand)
     {
         GrabTypes startingGrabType = hand.GetGrabStarting();
@@ -33,8 +25,7 @@ public class Wieldable : MonoBehaviour
         if (startingGrabType == GrabTypes.Grip)
         {
             OnAttachObject?.Invoke();
-            hand.AttachObject(gameObject, startingGrabType, attachmentFlags, attachmentOffset);
-            rb.isKinematic = true;       
+            hand.AttachObject(gameObject, startingGrabType, attachmentFlags, attachmentOffset);    
         }
     }
 
@@ -45,7 +36,6 @@ public class Wieldable : MonoBehaviour
         if (endingGrabType == GrabTypes.Grip)
         {
             hand.DetachObject(gameObject, false);
-            rb.isKinematic = false;
             OnDetachObject?.Invoke();
         }
     }
