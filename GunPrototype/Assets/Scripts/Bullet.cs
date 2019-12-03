@@ -3,15 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IPooledObject
 {
     public float BulletForce;
 
     private Rigidbody rb;
 
-    private void Start()
+    public void OnObjectSpawned()
     {
         rb = GetComponent<Rigidbody>();
+        ResetRigidBody();
         rb.AddForce(transform.forward * BulletForce);
+    }
+
+    private void ResetRigidBody()
+    {
+        rb.velocity = new Vector3(0f, 0f, 0f);
+        rb.angularVelocity = new Vector3(0f, 0f, 0f);
     }
 }
