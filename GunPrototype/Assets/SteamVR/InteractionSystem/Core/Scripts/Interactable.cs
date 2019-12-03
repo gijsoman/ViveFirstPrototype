@@ -274,7 +274,9 @@ namespace Valve.VR.InteractionSystem
         protected virtual void OnAttachedToHand(Hand hand)
         {
             if (activateActionSetOnAttach != null)
-                activateActionSetOnAttach.Activate(hand.handType);
+            {
+                activateActionSetOnAttach.Activate(hand.handType);                
+            }
 
             if (onAttachedToHand != null)
             {

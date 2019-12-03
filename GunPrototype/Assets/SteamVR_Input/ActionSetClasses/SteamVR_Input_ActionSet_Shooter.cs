@@ -24,5 +24,13 @@ namespace Valve.VR
                 return SteamVR_Actions.shooter_HoldWeapon;
             }
         }
+        
+        public virtual SteamVR_Action_Boolean Shoot
+        {
+            get
+            {
+                return SteamVR_Actions.shooter_Shoot;
+            }
+        }
     }
 }

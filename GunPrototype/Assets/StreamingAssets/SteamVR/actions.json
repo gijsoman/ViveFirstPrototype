@@ -85,6 +85,10 @@
     {
       "name": "/actions/Shooter/in/HoldWeapon",
       "type": "boolean"
+    },
+    {
+      "name": "/actions/Shooter/in/Shoot",
+      "type": "boolean"
     }
   ],
   "action_sets": [
