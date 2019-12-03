@@ -10,20 +10,12 @@ public class Shootable : MonoBehaviour
 
     public SteamVR_Action_Boolean Shoot;
 
-    private Interactable interactable;
-
-    private void Start()
+    private void HandAttachedUpdate(Hand hand)
     {
-        interactable = GetComponent<Interactable>();
-    }
-
-    private void Update()
-    {
-        if (interactable.attachedToHand)
+        //Debug.Log();
+        if (Shoot != null && Shoot.GetStateDown(hand.handType))
         {
-            SteamVR_Input_Sources hand = interactable.attachedToHand.handType;
-
-            Debug.Log(Shoot.GetState(hand));
+            Debug.Log("BAM");
         }
     }
 }
