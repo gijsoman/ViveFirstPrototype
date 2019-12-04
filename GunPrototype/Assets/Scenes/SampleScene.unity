@@ -1907,8 +1907,6 @@ MonoBehaviour:
     actionPath: /actions/default/in/GrabPinch
     needsReinit: 0
   EndOfBarrel: {fileID: 1754595045}
-  BulletPrefab: {fileID: 1900734910723676, guid: 67c3c990b6c48af469e31db314977502,
-    type: 3}
   ShootSound: {fileID: 0}
 --- !u!1 &1195927885
 GameObject:
@@ -2725,7 +2723,7 @@ MonoBehaviour:
   Pools:
   - Tag: Bullet
     Prefab: {fileID: 1900734910723676, guid: 67c3c990b6c48af469e31db314977502, type: 3}
-    Size: 20
+    Size: 3
 --- !u!4 &1670752456
 Transform:
   m_ObjectHideFlags: 0
