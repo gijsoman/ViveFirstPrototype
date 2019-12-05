@@ -2134,7 +2134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invertAxis: 0
-  hideCursor: 0
+  hideCursor: 1
   mouseSensitivity: 10
 --- !u!114 &1178503925
 MonoBehaviour:
