@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 036a4d1af00532743914effb5d16f778
+guid: ca2db909557b1294caea1386f7ee37ea
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable:
@@ -26,7 +26,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -253,18 +253,18 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: RM_BaseCharacter(Clone)
+    - name: BaseCharacter(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: CharacterBase
-      parentName: RM_BaseCharacter(Clone)
+      parentName: BaseCharacter(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:Hips
-      parentName: RM_BaseCharacter(Clone)
+      parentName: BaseCharacter(Clone)
       position: {x: -0.0000013808725, y: 1.0415992, z: -0.0053437413}
       rotation: {x: -0.0000003263423, y: -0.0000005610914, z: 0.000016614682, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -400,7 +400,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: d9da3e81f0b73bd44bfffa10101929bb,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 68445d452f701524a829c6259be84dee,
     type: 3}
   animationType: 3
   humanoidOversampling: 1

@@ -2,24 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Animator), typeof(Rigidbody), typeof(CapsuleCollider))]
 public class EnemyMovement : MonoBehaviour
 {
     private Animator animator;
+    private Rigidbody rb;
 
-    public float inputX;
-    public float inputY;
+    private bool isWalking = false;
 
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
-        inputY = Input.GetAxis("Vertical");
-        inputX = Input.GetAxis("Horizontal");
+        Turning();
+        Walking();
+        Move();
+        
+    }
 
-        animator.SetFloat("InputY", inputY);
+    private void Turning()
+    {
+        animator.SetFloat("Turn", Input.GetAxis("Horizontal"));
+    }
+
+    private void Walking()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            isWalking = !isWalking;
+            animator.SetBool("Walk", isWalking);
+        }
+    }
+
+    private void Move()
+    {
+        animator.SetFloat("Forward", Input.GetAxis("Vertical"));
     }
 }
