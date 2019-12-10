@@ -35,5 +35,7 @@ public class ThirdPersonCameraMouseControl : MonoBehaviour
             thirdPersonCamera.Yaw -= Input.GetAxis("Mouse X") * mouseSensitivity;
             thirdPersonCamera.Pitch += Input.GetAxis("Mouse Y") * mouseSensitivity;
         }
+
+
     }
 }
