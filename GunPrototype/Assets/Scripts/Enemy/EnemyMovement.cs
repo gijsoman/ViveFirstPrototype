@@ -8,8 +8,6 @@ public class EnemyMovement : MonoBehaviour
     private Animator animator;
     private Rigidbody rb;
 
-    private bool isWalking = false;
-
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -18,24 +16,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        Turning();
-        Walking();
-        Move();
-        
-    }
-
-    private void Turning()
-    {
-        animator.SetFloat("Turn", Input.GetAxis("Horizontal"));
-    }
-
-    private void Walking()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            isWalking = !isWalking;
-            animator.SetBool("Walk", isWalking);
-        }
+        Move();        
     }
 
     private void Move()
