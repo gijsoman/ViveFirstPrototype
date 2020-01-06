@@ -6,9 +6,12 @@ using Valve.VR;
 [RequireComponent(typeof(CharacterController))]
 public class VRWalking : MonoBehaviour
 {
+    public float Gravity = 30.0f;
     public float Sensitivity = 0.1f;
     public float MaxSpeed =  1.0f;
+    public float RotateIncrement = 90;
 
+    //public SteamVR_Action_Boolean RotatePress = null;
     public SteamVR_Action_Boolean MovePress = null;
     public SteamVR_Action_Vector2 MoveValue = null;
 
@@ -31,30 +34,34 @@ public class VRWalking : MonoBehaviour
 
     private void Update()
     {
-        HandleHead();
         HandleHeight();
-        CalculateMovement();        
+        CalculateMovement();
+        SnapRotation();
     }
 
-    private void HandleHead()
+    private void HandleHeight()
     {
-        //store current
-        Vector3 oldPosition = cameraRig.position;
-        Quaternion oldRotation = cameraRig.rotation;
+        //get the head in local space
+        float headHeight = Mathf.Clamp(head.localPosition.y, 1, 2);
+        characterController.height = headHeight;
 
-        //rotation
-        transform.eulerAngles = new Vector3(0f, head.rotation.eulerAngles.y, 0f);
+        //cut in half
+        Vector3 newCenter = Vector3.zero;
+        newCenter.y = characterController.height / 2;
+        newCenter.y += characterController.skinWidth;
 
+        //Move capsule in local space
+        newCenter.x = head.localPosition.x;
+        newCenter.z = head.localPosition.z;
 
-        //restore 
-        cameraRig.position = oldPosition;
-        cameraRig.rotation = oldRotation;
+        //apply
+        characterController.center = newCenter;
     }
 
     private void CalculateMovement()
     {
         //figure out movement orientation
-        Vector3 orientationEuler = new Vector3(0, transform.eulerAngles.y, 0);
+        Vector3 orientationEuler = new Vector3(0, head.eulerAngles.y, 0);
         Quaternion orientation = Quaternion.Euler(orientationEuler);
         Vector3 movement = Vector3.zero;
 
@@ -72,32 +79,32 @@ public class VRWalking : MonoBehaviour
             speed = Mathf.Clamp(speed, -MaxSpeed, MaxSpeed);
 
             //orientation
-            movement += orientation * (speed * Vector3.forward) * Time.deltaTime;
+            movement += orientation * (speed * Vector3.forward);
         }
 
+        //Gravity
+        movement.y -= Gravity * Time.deltaTime;
+
         //apply
-        characterController.Move(movement);
+        characterController.Move(movement * Time.deltaTime);
     }
 
-    private void HandleHeight()
+    private void SnapRotation()
     {
-        //get the head in local space
-        float headHeight = Mathf.Clamp(head.localPosition.y, 1, 2);
-        characterController.height = headHeight;
-        
-        //cut in half
-        Vector3 newCenter = Vector3.zero;
-        newCenter.y = characterController.height / 2;
-        newCenter.y += characterController.skinWidth;
+        float snapValue = 0f;
 
-        //Move capsule in local space
-        newCenter.x = head.localPosition.x;
-        newCenter.z = head.localPosition.z;
+        //move right
+        if (MoveValue.axis.x > 0.8 && MovePress.GetStateDown(SteamVR_Input_Sources.Any))
+        {
+            snapValue = Mathf.Abs(RotateIncrement);
+        }
 
-        //rotate
-        newCenter = Quaternion.Euler(0, -transform.eulerAngles.y, 0) * newCenter;
+        //move left
+        if (MoveValue.axis.x < -0.8 && MovePress.GetStateDown(SteamVR_Input_Sources.Any))
+        {
+            snapValue = -Mathf.Abs(RotateIncrement);
+        }
 
-        //apply
-        characterController.center = newCenter;
+        transform.RotateAround(head.position, Vector3.up, snapValue);
     }
 }
