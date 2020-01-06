@@ -60,33 +60,36 @@ public class VRWalking : MonoBehaviour
 
     private void CalculateMovement()
     {
-        //figure out movement orientation
-        Vector3 orientationEuler = new Vector3(0, head.eulerAngles.y, 0);
-        Quaternion orientation = Quaternion.Euler(orientationEuler);
+        //figure out movement orientation  
+        Quaternion orientation = CalculateOrientation();
         Vector3 movement = Vector3.zero;
 
         //if not moving
-        if (MovePress.GetStateUp(SteamVR_Input_Sources.Any))
+        if (MoveValue.axis.magnitude == 0)
         {
             speed = 0f;
         }
 
         //if button pressed
-        if (MovePress.state)
-        {
-            //add clamp
-            speed += MoveValue.axis.y * Sensitivity;
-            speed = Mathf.Clamp(speed, -MaxSpeed, MaxSpeed);
+        //add clamp
+        speed += MoveValue.axis.magnitude * Sensitivity;
+        speed = Mathf.Clamp(speed, -MaxSpeed, MaxSpeed);
 
-            //orientation
-            movement += orientation * (speed * Vector3.forward);
-        }
-
-        //Gravity
+        //orientation and Gravity
+        movement += orientation * (speed * Vector3.forward);
         movement.y -= Gravity * Time.deltaTime;
 
         //apply
         characterController.Move(movement * Time.deltaTime);
+    }
+
+    private Quaternion CalculateOrientation()
+    {
+        float rotation = Mathf.Atan2(MoveValue.axis.x, MoveValue.axis.y);
+        rotation *= Mathf.Rad2Deg;
+
+        Vector3 orientationEuler = new Vector3(0, head.eulerAngles.y * rotation, 0);
+        return Quaternion.Euler(orientationEuler);
     }
 
     private void SnapRotation()
