@@ -161,54 +161,26 @@
             },
             {
                "inputs" : {
-                  "center" : {
+                  "click" : {
                      "output" : "/actions/default/in/teleport"
                   },
-                  "east" : {
-                     "output" : "/actions/default/in/snapturnright"
-                  },
-                  "north" : {
-                     "output" : "/actions/default/in/teleport"
-                  },
-                  "south" : {
-                     "output" : "/actions/default/in/teleport"
-                  },
-                  "west" : {
-                     "output" : "/actions/default/in/snapturnleft"
+                  "position" : {
+                     "output" : "/actions/default/in/touchpadposition"
                   }
                },
-               "mode" : "dpad",
-               "parameters" : {
-                  "deadzone_pct" : "90",
-                  "overlap_pct" : "15",
-                  "sub_mode" : "click"
-               },
+               "mode" : "trackpad",
                "path" : "/user/hand/left/input/trackpad"
             },
             {
                "inputs" : {
-                  "center" : {
+                  "click" : {
                      "output" : "/actions/default/in/teleport"
                   },
-                  "east" : {
-                     "output" : "/actions/default/in/snapturnright"
-                  },
-                  "north" : {
-                     "output" : "/actions/default/in/teleport"
-                  },
-                  "south" : {
-                     "output" : "/actions/default/in/teleport"
-                  },
-                  "west" : {
-                     "output" : "/actions/default/in/snapturnleft"
+                  "position" : {
+                     "output" : "/actions/default/in/touchpadposition"
                   }
                },
-               "mode" : "dpad",
-               "parameters" : {
-                  "deadzone_pct" : "90",
-                  "overlap_pct" : "15",
-                  "sub_mode" : "click"
-               },
+               "mode" : "trackpad",
                "path" : "/user/hand/right/input/trackpad"
             },
             {
@@ -304,6 +276,20 @@
                },
                "mode" : "button",
                "path" : "/user/hand/right/input/grip"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/shooter/in/shoot"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/trigger"
+            },
+            {
+               "inputs" : {},
+               "mode" : "button",
+               "path" : "/user/hand/right/input/trigger"
             }
          ]
       }
