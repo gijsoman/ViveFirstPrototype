@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    public delegate void PlayerEvent();
+    public PlayerEvent IDied;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
         {
             Debug.Log("COP DED");
+            IDied?.Invoke();
         }
+    }
+
+    private void OnDestroy()
+    {
+        IDied = null;
     }
 }
