@@ -21,4 +21,9 @@ public class Bullet : MonoBehaviour, IPooledObject
         rb.velocity = new Vector3(0f, 0f, 0f);
         rb.angularVelocity = new Vector3(0f, 0f, 0f);
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        gameObject.SetActive(false);
+    }
 }

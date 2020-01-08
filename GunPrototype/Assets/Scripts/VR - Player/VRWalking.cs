@@ -36,7 +36,7 @@ public class VRWalking : MonoBehaviour
     {
         HandleHeight();
         CalculateMovement();
-        SnapRotation();
+        //SnapRotation();
     }
 
     private void HandleHeight()
@@ -88,7 +88,7 @@ public class VRWalking : MonoBehaviour
         float rotation = Mathf.Atan2(MoveValue.axis.x, MoveValue.axis.y);
         rotation *= Mathf.Rad2Deg;
 
-        Vector3 orientationEuler = new Vector3(0, head.eulerAngles.y * rotation, 0);
+        Vector3 orientationEuler = new Vector3(0, head.eulerAngles.y + rotation, 0);
         return Quaternion.Euler(orientationEuler);
     }
 
