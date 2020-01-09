@@ -2,18 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class EnemyScript : MonoBehaviour
 {
-    bool Alive = true;
     public delegate void EnemyEvent();
     public EnemyEvent IDied;
+
+    private bool alive = true;
+    private Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.name == "Bullet_45mm_Bullet(Clone)")
         {
-            Debug.Log("Me Ded");
-            Alive = false;
+            if(alive)
+                anim.SetTrigger("Death");
+            alive = false;
             IDied?.Invoke();
         }
     }

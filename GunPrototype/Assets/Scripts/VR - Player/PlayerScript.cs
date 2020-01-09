@@ -11,7 +11,6 @@ public class PlayerScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("COP DED");
             IDied?.Invoke();
         }
     }
