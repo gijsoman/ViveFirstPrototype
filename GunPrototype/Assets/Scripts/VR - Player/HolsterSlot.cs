@@ -42,8 +42,7 @@ public class HolsterSlot : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (vrPositioned)
-        {
-            Debug.Log("TRIGGER ENTERED");
+        { 
             currentHolsterableItem = other.GetComponent<Holsterable>();
             if (currentHolsterableItem != null && currentHolsterableItem.Type == HolsterItemType)
                 currentHolsterableItem.wieldable.OnDetachObject += HolsterItem;
@@ -54,7 +53,6 @@ public class HolsterSlot : MonoBehaviour
     {
         if (vrPositioned)
         {
-            Debug.Log("TRIGGER EXIT");
             if (currentHolsterableItem != null)
             {
                 currentHolsterableItem.wieldable.OnDetachObject -= HolsterItem;
