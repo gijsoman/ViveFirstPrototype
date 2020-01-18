@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Application.targetFrameRate = -1;
+        QualitySettings.vSyncCount = 0;
         Enemy.IDied += EnemyDeathSequence;
         Player.IDied += PlayerDeathSequence;
     }
